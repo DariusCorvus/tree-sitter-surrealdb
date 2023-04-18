@@ -46,6 +46,8 @@ module.exports = grammar({
         $.value,
         optional($.semicolon)
       ),
+    table: ($) =>
+      seq($.keyword_table, $.identifier, optional($.drop), optional($.schema)),
     on: ($) =>
       seq(
         $.keyword_on,
@@ -53,6 +55,8 @@ module.exports = grammar({
       ),
     type: ($) => seq($.keyword_type, choice(...TYPE_ALGORITHMS)),
     value: ($) => seq($.keyword_value, $.string),
+    drop: ($) => seq($.keyword_drop),
+    schema: ($) => seq(choice($.keyword_schemaless, $.keyword_schemafull)),
 
     keyword_define: ($) => "DEFINE",
     keyword_namespace: ($) => "NAMESPACE",
@@ -60,6 +64,10 @@ module.exports = grammar({
     keyword_scope: ($) => "SCOPE",
     keyword_login: ($) => "LOGIN",
     keyword_token: ($) => "TOKEN",
+    keyword_table: ($) => "TABLE",
+    keyword_drop: ($) => "DROP",
+    keyword_schemafull: ($) => "SCHEMAFULL",
+    keyword_schemaless: ($) => "SCHEMALESS",
     keyword_type: ($) => "TYPE",
     keyword_value: ($) => "VALUE",
     keyword_on: ($) => "ON",
