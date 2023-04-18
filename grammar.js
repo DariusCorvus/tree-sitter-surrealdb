@@ -6,9 +6,15 @@ module.exports = grammar({
 
     _statement: ($) => choice($._define_statement),
     _define_statement: ($) => choice($.define),
-    define: ($) => seq("DEFINE", choice($.namespace, $.database)),
-    namespace: ($) => seq("NAMESPACE", $.identifier, optional($.semicolon)),
-    database: ($) => seq("DATABASE", $.identifier, optional($.semicolon)),
+    define: ($) =>
+      seq($.keyword_define, choice($.namespace, $.database, $.login)),
+    namespace: ($) =>
+      seq($.keyword_namespace, $.identifier, optional($.semicolon)),
+    database: ($) =>
+      seq($.keyword_database, $.identifier, optional($.semicolon)),
+    keyword_define: ($) => "DEFINE",
+    keyword_namespace: ($) => "NAMESPACE",
+    keyword_database: ($) => "DATABASE",
 
     semicolon: ($) => ";",
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
