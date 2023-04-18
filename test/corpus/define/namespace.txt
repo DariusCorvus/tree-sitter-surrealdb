@@ -1,0 +1,23 @@
+=======================
+DEFINE NAMESPACE @name
+=======================
+
+DEFINE NAMESPACE company
+---
+(source
+  (define
+    (namespace
+      (identifier))))
+
+=======================
+DEFINE NAMESPACE @name; 
+=======================
+
+DEFINE NAMESPACE company;
+---
+(source
+  (define
+    (namespace
+      (identifier)
+      (semicolon))))
+
