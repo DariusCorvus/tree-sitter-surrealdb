@@ -14,10 +14,11 @@ DEFINE LOGIN username ON NAMESPACE PASSWORD 'test'
       (identifier)
       (on
         (keyword_on)
-        (keyword_namespace)
-        (keyword_password)
-        (string
-          (single_quoted_string))))))
+        (keyword_namespace))
+      (pass
+        (keyword_password))
+      (string
+        (single_quoted_string)))))
 
 ================================================================================
 DEFINE LOGIN @name ON NAMESPACE PASSWORD "@pass"
@@ -35,10 +36,11 @@ DEFINE LOGIN username ON NAMESPACE PASSWORD "test"
       (identifier)
       (on
         (keyword_on)
-        (keyword_namespace)
-        (keyword_password)
-        (string
-          (double_quoted_string))))))
+        (keyword_namespace))
+      (pass
+        (keyword_password))
+      (string
+        (double_quoted_string)))))
 
 ================================================================================
 DEFINE LOGIN @name ON NAMESPACE PASSWORD '@pass';
@@ -56,11 +58,12 @@ DEFINE LOGIN username ON NAMESPACE PASSWORD 'test';
       (identifier)
       (on
         (keyword_on)
-        (keyword_namespace)
-        (keyword_password)
-        (string
-          (single_quoted_string))
-        (semicolon)))))
+        (keyword_namespace))
+      (pass
+        (keyword_password))
+      (string
+        (single_quoted_string))
+      (semicolon))))
 
 ================================================================================
 DEFINE LOGIN @name ON NAMESPACE PASSWORD "@pass";
@@ -78,11 +81,12 @@ DEFINE LOGIN username ON NAMESPACE PASSWORD "test";
       (identifier)
       (on
         (keyword_on)
-        (keyword_namespace)
-        (keyword_password)
-        (string
-          (double_quoted_string))
-        (semicolon)))))
+        (keyword_namespace))
+      (pass
+        (keyword_password))
+      (string
+        (double_quoted_string))
+      (semicolon))))
 
 ================================================================================
 DEFINE LOGIN @name ON NAMESPACE PASSHASH '@pass'
@@ -100,10 +104,11 @@ DEFINE LOGIN username ON NAMESPACE PASSHASH 'test'
       (identifier)
       (on
         (keyword_on)
-        (keyword_namespace)
-        (keyword_passhash)
-        (string
-          (single_quoted_string))))))
+        (keyword_namespace))
+      (pass
+        (keyword_passhash))
+      (string
+        (single_quoted_string)))))
 
 ================================================================================
 DEFINE LOGIN @name ON NAMESPACE PASSHASH "@pass"
@@ -121,10 +126,11 @@ DEFINE LOGIN username ON NAMESPACE PASSHASH "test"
       (identifier)
       (on
         (keyword_on)
-        (keyword_namespace)
-        (keyword_passhash)
-        (string
-          (double_quoted_string))))))
+        (keyword_namespace))
+      (pass
+        (keyword_passhash))
+      (string
+        (double_quoted_string)))))
 
 ================================================================================
 DEFINE LOGIN @name ON NAMESPACE PASSHASH '@pass';
@@ -142,11 +148,12 @@ DEFINE LOGIN username ON NAMESPACE PASSHASH 'test';
       (identifier)
       (on
         (keyword_on)
-        (keyword_namespace)
-        (keyword_passhash)
-        (string
-          (single_quoted_string))
-        (semicolon)))))
+        (keyword_namespace))
+      (pass
+        (keyword_passhash))
+      (string
+        (single_quoted_string))
+      (semicolon))))
 
 ================================================================================
 DEFINE LOGIN @name ON NAMESPACE PASSHASH "@pass";
@@ -164,11 +171,12 @@ DEFINE LOGIN username ON NAMESPACE PASSHASH "test";
       (identifier)
       (on
         (keyword_on)
-        (keyword_namespace)
-        (keyword_passhash)
-        (string
-          (double_quoted_string))
-        (semicolon)))))
+        (keyword_namespace))
+      (pass
+        (keyword_passhash))
+      (string
+        (double_quoted_string))
+      (semicolon))))
 
 ================================================================================
 DEFINE LOGIN @name ON DATABASE PASSWORD '@pass'
@@ -186,10 +194,11 @@ DEFINE LOGIN username ON DATABASE PASSWORD 'test'
       (identifier)
       (on
         (keyword_on)
-        (keyword_database)
-        (keyword_password)
-        (string
-          (single_quoted_string))))))
+        (keyword_database))
+      (pass
+        (keyword_password))
+      (string
+        (single_quoted_string)))))
 
 ================================================================================
 DEFINE LOGIN @name ON DATABASE PASSWORD "@pass"
@@ -207,10 +216,11 @@ DEFINE LOGIN username ON DATABASE PASSWORD "test"
       (identifier)
       (on
         (keyword_on)
-        (keyword_database)
-        (keyword_password)
-        (string
-          (double_quoted_string))))))
+        (keyword_database))
+      (pass
+        (keyword_password))
+      (string
+        (double_quoted_string)))))
 
 ================================================================================
 DEFINE LOGIN @name ON DATABASE PASSWORD '@pass';
@@ -228,11 +238,12 @@ DEFINE LOGIN username ON DATABASE PASSWORD 'test';
       (identifier)
       (on
         (keyword_on)
-        (keyword_database)
-        (keyword_password)
-        (string
-          (single_quoted_string))
-        (semicolon)))))
+        (keyword_database))
+      (pass
+        (keyword_password))
+      (string
+        (single_quoted_string))
+      (semicolon))))
 
 ================================================================================
 DEFINE LOGIN @name ON DATABASE PASSWORD "@pass";
@@ -250,11 +261,12 @@ DEFINE LOGIN username ON DATABASE PASSWORD "test";
       (identifier)
       (on
         (keyword_on)
-        (keyword_database)
-        (keyword_password)
-        (string
-          (double_quoted_string))
-        (semicolon)))))
+        (keyword_database))
+      (pass
+        (keyword_password))
+      (string
+        (double_quoted_string))
+      (semicolon))))
 
 ================================================================================
 DEFINE LOGIN @name ON DATABASE PASSHASH '@pass'
@@ -272,10 +284,11 @@ DEFINE LOGIN username ON DATABASE PASSHASH 'test'
       (identifier)
       (on
         (keyword_on)
-        (keyword_database)
-        (keyword_passhash)
-        (string
-          (single_quoted_string))))))
+        (keyword_database))
+      (pass
+        (keyword_passhash))
+      (string
+        (single_quoted_string)))))
 
 ================================================================================
 DEFINE LOGIN @name ON DATABASE PASSHASH "@pass"
@@ -293,10 +306,11 @@ DEFINE LOGIN username ON DATABASE PASSHASH "test"
       (identifier)
       (on
         (keyword_on)
-        (keyword_database)
-        (keyword_passhash)
-        (string
-          (double_quoted_string))))))
+        (keyword_database))
+      (pass
+        (keyword_passhash))
+      (string
+        (double_quoted_string)))))
 
 ================================================================================
 DEFINE LOGIN @name ON DATABASE PASSHASH '@pass';
@@ -314,11 +328,12 @@ DEFINE LOGIN username ON DATABASE PASSHASH 'test';
       (identifier)
       (on
         (keyword_on)
-        (keyword_database)
-        (keyword_passhash)
-        (string
-          (single_quoted_string))
-        (semicolon)))))
+        (keyword_database))
+      (pass
+        (keyword_passhash))
+      (string
+        (single_quoted_string))
+      (semicolon))))
 
 ================================================================================
 DEFINE LOGIN @name ON DATABASE PASSHASH "@pass";
@@ -336,8 +351,9 @@ DEFINE LOGIN username ON DATABASE PASSHASH "test";
       (identifier)
       (on
         (keyword_on)
-        (keyword_database)
-        (keyword_passhash)
-        (string
-          (double_quoted_string))
-        (semicolon)))))
+        (keyword_database))
+      (pass
+        (keyword_passhash))
+      (string
+        (double_quoted_string))
+      (semicolon))))
