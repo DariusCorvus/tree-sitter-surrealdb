@@ -1,0 +1,277 @@
+================================================================================
+DEFINE TOKEN @name ON NAMESPACE TYPE @type VALUE '@value'
+================================================================================
+DEFINE TOKEN token_name ON NAMESPACE TYPE HS512 VALUE 'test'
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (keyword_namespace))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (single_quoted_string))))))
+
+================================================================================
+DEFINE TOKEN @name ON NAMESPACE TYPE @type VALUE '@value';
+================================================================================
+DEFINE TOKEN token_name ON NAMESPACE TYPE HS512 VALUE 'test';
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (keyword_namespace))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (single_quoted_string)))
+      (semicolon))))
+
+================================================================================
+DEFINE TOKEN @name ON NAMESPACE TYPE @type VALUE "@value"
+================================================================================
+DEFINE TOKEN token_name ON NAMESPACE TYPE HS512 VALUE "@value"
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (keyword_namespace))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (double_quoted_string))))))
+
+================================================================================
+DEFINE TOKEN @name ON NAMESPACE TYPE @type VALUE "@value";
+================================================================================
+DEFINE TOKEN token_name ON NAMESPACE TYPE HS512 VALUE "@value";
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (keyword_namespace))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (double_quoted_string)))
+      (semicolon))))
+
+================================================================================
+DEFINE TOKEN @name ON DATABASE TYPE @type VALUE '@value'
+================================================================================
+DEFINE TOKEN token_name ON DATABASE TYPE HS512 VALUE 'test'
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (keyword_database))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (single_quoted_string))))))
+
+================================================================================
+DEFINE TOKEN @name ON DATABASE TYPE @type VALUE '@value';
+================================================================================
+DEFINE TOKEN token_name ON DATABASE TYPE HS512 VALUE 'test';
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (keyword_database))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (single_quoted_string)))
+      (semicolon))))
+
+================================================================================
+DEFINE TOKEN @name ON DATABASE TYPE @type VALUE "@value"
+================================================================================
+DEFINE TOKEN token_name ON DATABASE TYPE HS512 VALUE "@value"
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (keyword_database))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (double_quoted_string))))))
+
+================================================================================
+DEFINE TOKEN @name ON DATABASE TYPE @type VALUE "@value";
+================================================================================
+DEFINE TOKEN token_name ON DATABASE TYPE HS512 VALUE "@value";
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (keyword_database))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (double_quoted_string)))
+      (semicolon))))
+
+================================================================================
+DEFINE TOKEN @name ON SCOPE @scope TYPE @type VALUE '@value'
+================================================================================
+DEFINE TOKEN token_name ON SCOPE scope_name TYPE HS512 VALUE 'test'
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (scope
+          (keyword_scope)
+          (identifier)))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (single_quoted_string))))))
+
+================================================================================
+DEFINE TOKEN @name ON SCOPE @scope TYPE @type VALUE '@value';
+================================================================================
+DEFINE TOKEN token_name ON SCOPE scope_name TYPE HS512 VALUE 'test';
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (scope
+          (keyword_scope)
+          (identifier)))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (single_quoted_string)))
+      (semicolon))))
+
+================================================================================
+DEFINE TOKEN @name ON SCOPE @scope TYPE @type VALUE "@value"
+================================================================================
+DEFINE TOKEN token_name ON SCOPE scope_name TYPE HS512 VALUE "@value"
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (scope
+          (keyword_scope)
+          (identifier)))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (double_quoted_string))))))
+
+================================================================================
+DEFINE TOKEN @name ON SCOPE @scope TYPE @type VALUE "@value";
+================================================================================
+DEFINE TOKEN token_name ON SCOPE scope_name TYPE HS512 VALUE "@value";
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (token
+      (keyword_token)
+      (identifier)
+      (on
+        (keyword_on)
+        (scope
+          (keyword_scope)
+          (identifier)))
+      (type
+        (keyword_type))
+      (value
+        (keyword_value)
+        (string
+          (double_quoted_string)))
+      (semicolon))))
