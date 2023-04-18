@@ -23,11 +23,15 @@ module.exports = grammar({
     _statement: ($) => choice($._define_statement),
     _define_statement: ($) => choice($.define),
     define: ($) =>
-      seq($.keyword_define, choice($.namespace, $.database, $.login, $.token)),
+      seq(
+        $.keyword_define,
+        choice($.namespace, $.database, $.login, $.token, $.table)
+      ),
     namespace: ($) =>
       seq($.keyword_namespace, $.identifier, optional($.semicolon)),
     database: ($) =>
       seq($.keyword_database, $.identifier, optional($.semicolon)),
+
     login: ($) =>
       seq(
         $.keyword_login,
@@ -37,6 +41,7 @@ module.exports = grammar({
         $.string,
         optional($.semicolon)
       ),
+
     token: ($) =>
       seq(
         $.keyword_token,
@@ -46,17 +51,53 @@ module.exports = grammar({
         $.value,
         optional($.semicolon)
       ),
-    table: ($) =>
-      seq($.keyword_table, $.identifier, optional($.drop), optional($.schema)),
+
     on: ($) =>
       seq(
         $.keyword_on,
         choice($.keyword_namespace, $.keyword_database, $.scope)
       ),
+
     type: ($) => seq($.keyword_type, choice(...TYPE_ALGORITHMS)),
     value: ($) => seq($.keyword_value, $.string),
+
+    table: ($) =>
+      seq(
+        $.keyword_table,
+        $.identifier,
+        optional($.drop),
+        optional($.schema),
+        optional($.as),
+        optional($.permissions)
+      ),
+
+    permissions: ($) =>
+      seq(
+        $.keyword_permissions,
+        optional(choice($.keyword_none, $.keyword_full, $.for))
+      ),
+
+    for: ($) => seq($.keyword_for, $.for_statement), // TODO: for_statement repeatable up to 4 times
+    for_statement: ($) =>
+      seq(choice($.for_select, $.for_create, $.for_update, $.for_delete)),
+
+    for_select: ($) => seq($.keyword_select, choice($.keyword_none)), // TODO: add @expression
+    for_create: ($) => seq($.keyword_create, choice($.keyword_none)), // TODO: add @expression
+    for_update: ($) => seq($.keyword_update, choice($.keyword_none)), // TODO: add @expression
+    for_delete: ($) => seq($.keyword_delete, choice($.keyword_none)), // TODO: add @expression
+
     drop: ($) => seq($.keyword_drop),
     schema: ($) => seq(choice($.keyword_schemaless, $.keyword_schemafull)),
+    as: ($) => seq($.keyword_as, $.select),
+
+    select: ($) => seq($.keyword_select, $.identifier, $.from),
+    from: ($) =>
+      seq($.keyword_from, $.identifier, optional($.where), optional($.group)),
+    where: ($) => seq($.keyword_where, $.condition),
+    condition: ($) => seq($.identifier, $.operator, $.identifier), // TODO: develop condition rule, just a placeholder prototype
+    group: ($) => seq($.keyword_group, choice($.keyword_by), $.identifier), // TODO: improve rule, just a prototype
+
+    operator: ($) => choice(token("-"), token("+"), token("=")), // TODO: include all operators
 
     keyword_define: ($) => "DEFINE",
     keyword_namespace: ($) => "NAMESPACE",
@@ -65,14 +106,34 @@ module.exports = grammar({
     keyword_login: ($) => "LOGIN",
     keyword_token: ($) => "TOKEN",
     keyword_table: ($) => "TABLE",
+
     keyword_drop: ($) => "DROP",
+
     keyword_schemafull: ($) => "SCHEMAFULL",
     keyword_schemaless: ($) => "SCHEMALESS",
+
+    keyword_permissions: ($) => "PERMISSIONS",
+    keyword_for: ($) => "FOR",
+
     keyword_type: ($) => "TYPE",
     keyword_value: ($) => "VALUE",
+    keyword_none: ($) => "NONE",
+    keyword_full: ($) => "FULL",
+
     keyword_on: ($) => "ON",
+    keyword_as: ($) => "AS",
+    keyword_by: ($) => "BY",
+
     keyword_password: ($) => "PASSWORD",
     keyword_passhash: ($) => "PASSHASH",
+
+    keyword_select: ($) => "SELECT",
+    keyword_create: ($) => "CREATE",
+    keyword_update: ($) => "UPDATE",
+    keyword_delete: ($) => "DELETE",
+    keyword_from: ($) => "FROM",
+    keyword_where: ($) => "WHERE",
+    keyword_group: ($) => "GROUP",
 
     pass: ($) => choice($.keyword_password, $.keyword_passhash),
     scope: ($) => seq($.keyword_scope, $.identifier),
