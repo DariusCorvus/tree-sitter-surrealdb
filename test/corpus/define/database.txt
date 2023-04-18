@@ -1,0 +1,23 @@
+======================
+DEFINE DATABASE @name
+======================
+
+DEFINE DATABASE user
+---
+(source
+  (define
+    (database
+      (identifier))))
+
+======================
+DEFINE DATABASE @name;
+======================
+
+DEFINE DATABASE user;
+---
+(source
+  (define
+    (database
+      (identifier)
+      (semicolon))))
+
