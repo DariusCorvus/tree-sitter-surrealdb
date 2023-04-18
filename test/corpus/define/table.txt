@@ -1,0 +1,246 @@
+================================================================================
+DEFINE TABLE @name
+================================================================================
+DEFINE TABLE user
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier))))
+
+================================================================================
+DEFINE TABLE @name DROP
+================================================================================
+DEFINE TABLE user DROP
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (drop
+        (keyword_drop)))))
+
+================================================================================
+DEFINE TABLE @name SCHEMAFULL
+================================================================================
+DEFINE TABLE user SCHEMAFULL
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (schema
+        (keyword_schemafull)))))
+
+================================================================================
+DEFINE TABLE @name SCHEMALESS
+================================================================================
+DEFINE TABLE user SCHEMALESS
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (schema
+        (keyword_schemaless)))))
+
+================================================================================
+DEFINE TABLE @user AS SELECT @projections FROM @tables
+================================================================================
+DEFINE TABLE user AS SELECT name FROM member
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (as
+        (keyword_as)
+        (select
+          (keyword_select)
+          (identifier)
+          (from
+            (keyword_from)
+            (identifier)))))))
+
+================================================================================
+DEFINE TABLE @user AS SELECT @projections FROM @tables WHERE @condition
+================================================================================
+DEFINE TABLE user AS SELECT name FROM member WHERE verified = yes
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (as
+        (keyword_as)
+        (select
+          (keyword_select)
+          (identifier)
+          (from
+            (keyword_from)
+            (identifier)
+            (where
+              (keyword_where)
+              (condition
+                (identifier)
+                (operator)
+                (identifier)))))))))
+
+================================================================================
+DEFINE TABLE @user AS SELECT @projections FROM @tables GROUP BY @groups
+================================================================================
+DEFINE TABLE user AS SELECT name FROM member GROUP BY age
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (as
+        (keyword_as)
+        (select
+          (keyword_select)
+          (identifier)
+          (from
+            (keyword_from)
+            (identifier)
+            (group
+              (keyword_group)
+              (keyword_by)
+              (identifier))))))))
+
+================================================================================
+DEFINE TABLE @user PERMISSIONS NONE
+================================================================================
+DEFINE TABLE user PERMISSIONS NONE
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (permissions
+        (keyword_permissions)
+        (keyword_none)))))
+
+================================================================================
+DEFINE TABLE @user PERMISSIONS FULL
+================================================================================
+DEFINE TABLE user PERMISSIONS FULL
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (permissions
+        (keyword_permissions)
+        (keyword_full)))))
+
+================================================================================
+DEFINE TABLE @user PERMISSIONS FOR select @expression
+================================================================================
+DEFINE TABLE user PERMISSIONS FOR SELECT NONE
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (permissions
+        (keyword_permissions)
+        (for
+          (keyword_for)
+          (for_statement
+            (for_select
+              (keyword_select)
+              (keyword_none))))))))
+
+================================================================================
+DEFINE TABLE @user PERMISSIONS FOR create @expression
+================================================================================
+DEFINE TABLE user PERMISSIONS FOR CREATE NONE
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (permissions
+        (keyword_permissions)
+        (for
+          (keyword_for)
+          (for_statement
+            (for_create
+              (keyword_create)
+              (keyword_none))))))))
+
+================================================================================
+DEFINE TABLE @user PERMISSIONS FOR update @expression
+================================================================================
+DEFINE TABLE user PERMISSIONS FOR UPDATE NONE
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (permissions
+        (keyword_permissions)
+        (for
+          (keyword_for)
+          (for_statement
+            (for_update
+              (keyword_update)
+              (keyword_none))))))))
+
+================================================================================
+DEFINE TABLE @user PERMISSIONS FOR delete @expression
+================================================================================
+DEFINE TABLE user PERMISSIONS FOR DELETE NONE
+--------------------------------------------------------------------------------
+
+(source
+  (define
+    (keyword_define)
+    (table
+      (keyword_table)
+      (identifier)
+      (permissions
+        (keyword_permissions)
+        (for
+          (keyword_for)
+          (for_statement
+            (for_delete
+              (keyword_delete)
+              (keyword_none))))))))
