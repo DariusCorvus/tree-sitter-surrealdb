@@ -13,7 +13,7 @@ DEFINE TOKEN token_name ON NAMESPACE TYPE HS512 VALUE 'test'
       (on
         (keyword_on)
         (keyword_namespace))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -35,7 +35,7 @@ DEFINE TOKEN token_name ON NAMESPACE TYPE HS512 VALUE 'test';
       (on
         (keyword_on)
         (keyword_namespace))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -58,7 +58,7 @@ DEFINE TOKEN token_name ON NAMESPACE TYPE HS512 VALUE "@value"
       (on
         (keyword_on)
         (keyword_namespace))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -80,7 +80,7 @@ DEFINE TOKEN token_name ON NAMESPACE TYPE HS512 VALUE "@value";
       (on
         (keyword_on)
         (keyword_namespace))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -103,7 +103,7 @@ DEFINE TOKEN token_name ON DATABASE TYPE HS512 VALUE 'test'
       (on
         (keyword_on)
         (keyword_database))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -125,7 +125,7 @@ DEFINE TOKEN token_name ON DATABASE TYPE HS512 VALUE 'test';
       (on
         (keyword_on)
         (keyword_database))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -148,7 +148,7 @@ DEFINE TOKEN token_name ON DATABASE TYPE HS512 VALUE "@value"
       (on
         (keyword_on)
         (keyword_database))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -170,7 +170,7 @@ DEFINE TOKEN token_name ON DATABASE TYPE HS512 VALUE "@value";
       (on
         (keyword_on)
         (keyword_database))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -195,7 +195,7 @@ DEFINE TOKEN token_name ON SCOPE scope_name TYPE HS512 VALUE 'test'
         (scope
           (keyword_scope)
           (identifier)))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -219,7 +219,7 @@ DEFINE TOKEN token_name ON SCOPE scope_name TYPE HS512 VALUE 'test';
         (scope
           (keyword_scope)
           (identifier)))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -244,7 +244,7 @@ DEFINE TOKEN token_name ON SCOPE scope_name TYPE HS512 VALUE "@value"
         (scope
           (keyword_scope)
           (identifier)))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
@@ -268,7 +268,7 @@ DEFINE TOKEN token_name ON SCOPE scope_name TYPE HS512 VALUE "@value";
         (scope
           (keyword_scope)
           (identifier)))
-      (type
+      (type_algorithm
         (keyword_type))
       (value
         (keyword_value)
