@@ -1,0 +1,5 @@
+===
+DEFINE EVENT @name ON TABLE @table WHEN @expression THEN @expression
+===
+DEFINE EVENT event ON TABLE table WHEN event = UPDATE THEN
+---
