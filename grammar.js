@@ -14,6 +14,22 @@ const TYPE_ALGORITHMS = [
   "RS512",
 ];
 
+const TYPES = [
+  "any",
+  "array",
+  "bool",
+  "datetime",
+  "decimal",
+  "duration",
+  "float",
+  "int",
+  "number",
+  "object",
+  "string",
+  "record",
+  "geometry",
+];
+
 module.exports = grammar({
   name: "surrealdb",
 
@@ -25,7 +41,15 @@ module.exports = grammar({
     define: ($) =>
       seq(
         $.keyword_define,
-        choice($.namespace, $.database, $.login, $.token, $.table, $.event)
+        choice(
+          $.namespace,
+          $.database,
+          $.login,
+          $.token,
+          $.table,
+          $.event,
+          $.function
+        )
       ),
     namespace: ($) =>
       seq($.keyword_namespace, $.identifier, optional($.semicolon)),
@@ -47,7 +71,7 @@ module.exports = grammar({
         $.keyword_token,
         $.identifier,
         $.on,
-        $.type,
+        $.type_algorithm,
         $.value,
         optional($.semicolon)
       ),
@@ -63,7 +87,8 @@ module.exports = grammar({
         )
       ),
 
-    type: ($) => seq($.keyword_type, choice(...TYPE_ALGORITHMS)),
+    datatype: ($) => seq(choice(...TYPES)),
+    type_algorithm: ($) => seq($.keyword_type, choice(...TYPE_ALGORITHMS)),
     value: ($) => seq($.keyword_value, $.string),
 
     table: ($) =>
@@ -103,6 +128,25 @@ module.exports = grammar({
         // $.expression // TODO: develop expression rule.
       ),
 
+    function: (
+      $ // TODO: add query rule.
+    ) =>
+      seq(
+        $.keyword_function,
+        $.function_identifier,
+        "(",
+        optional($.parameters),
+        ")",
+        "{",
+        $.return,
+        "}"
+      ),
+    function_identifier: ($) => seq(/fn::[a-zA-Z_][a-zA-Z0-9_]*/),
+    parameters: ($) => seq($.parameter, repeat(seq(",", $.parameter))),
+    parameter: ($) => seq($.variable, ":", $.datatype),
+    return: ($) => seq($.keyword_return, $.returned, optional($.semicolon)),
+    returned: ($) => seq($.expression),
+
     drop: ($) => seq($.keyword_drop),
     schema: ($) => seq(choice($.keyword_schemaless, $.keyword_schemafull)),
     as: ($) => seq($.keyword_as, $.select),
@@ -114,6 +158,8 @@ module.exports = grammar({
     condition: ($) => seq($.identifier, $.operator, $.identifier), // TODO: develop condition rule, just a placeholder prototype
     group: ($) => seq($.keyword_group, choice($.keyword_by), $.identifier), // TODO: improve rule, just a prototype
 
+    expression: ($) => seq($.keyword_none),
+
     operator: ($) => choice(token("-"), token("+"), token("=")), // TODO: include all operators
 
     keyword_define: ($) => "DEFINE",
@@ -124,6 +170,7 @@ module.exports = grammar({
     keyword_token: ($) => "TOKEN",
     keyword_table: ($) => "TABLE",
     keyword_event: ($) => "EVENT",
+    keyword_function: ($) => "FUNCTION",
 
     keyword_drop: ($) => "DROP",
 
@@ -155,6 +202,10 @@ module.exports = grammar({
 
     keyword_when: ($) => "WHEN",
     keyword_then: ($) => "THEN",
+
+    keyword_function: ($) => "FUNCTION",
+    keyword_return: ($) => "RETURN",
+
     pass: ($) => choice($.keyword_password, $.keyword_passhash),
     scope: ($) => seq($.keyword_scope, $.identifier),
     string: ($) => choice($.single_quoted_string, $.double_quoted_string),
@@ -167,6 +218,7 @@ module.exports = grammar({
     semicolon: ($) => ";",
 
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
+    variable: ($) => /\$[a-zA-Z_][a-zA-Z0-9_]*/,
 
     comment: ($) =>
       token(
