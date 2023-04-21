@@ -25,7 +25,7 @@ module.exports = grammar({
     define: ($) =>
       seq(
         $.keyword_define,
-        choice($.namespace, $.database, $.login, $.token, $.table)
+        choice($.namespace, $.database, $.login, $.token, $.table, $.event)
       ),
     namespace: ($) =>
       seq($.keyword_namespace, $.identifier, optional($.semicolon)),
@@ -55,7 +55,12 @@ module.exports = grammar({
     on: ($) =>
       seq(
         $.keyword_on,
-        choice($.keyword_namespace, $.keyword_database, $.scope)
+        choice(
+          $.keyword_namespace,
+          $.keyword_database,
+          $.scope,
+          $.keyword_table
+        )
       ),
 
     type: ($) => seq($.keyword_type, choice(...TYPE_ALGORITHMS)),
@@ -86,6 +91,18 @@ module.exports = grammar({
     for_update: ($) => seq($.keyword_update, choice($.keyword_none)), // TODO: add @expression
     for_delete: ($) => seq($.keyword_delete, choice($.keyword_none)), // TODO: add @expression
 
+    event: ($) =>
+      seq(
+        $.keyword_event,
+        $.identifier,
+        $.on,
+        $.identifier,
+        $.keyword_when,
+        $.condition,
+        $.keyword_then
+        // $.expression // TODO: develop expression rule.
+      ),
+
     drop: ($) => seq($.keyword_drop),
     schema: ($) => seq(choice($.keyword_schemaless, $.keyword_schemafull)),
     as: ($) => seq($.keyword_as, $.select),
@@ -106,6 +123,7 @@ module.exports = grammar({
     keyword_login: ($) => "LOGIN",
     keyword_token: ($) => "TOKEN",
     keyword_table: ($) => "TABLE",
+    keyword_event: ($) => "EVENT",
 
     keyword_drop: ($) => "DROP",
 
@@ -135,6 +153,8 @@ module.exports = grammar({
     keyword_where: ($) => "WHERE",
     keyword_group: ($) => "GROUP",
 
+    keyword_when: ($) => "WHEN",
+    keyword_then: ($) => "THEN",
     pass: ($) => choice($.keyword_password, $.keyword_passhash),
     scope: ($) => seq($.keyword_scope, $.identifier),
     string: ($) => choice($.single_quoted_string, $.double_quoted_string),
