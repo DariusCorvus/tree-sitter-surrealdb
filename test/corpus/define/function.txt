@@ -1,0 +1,17 @@
+===
+DEFINE FUNCTION fn::@name() { RETURN @returned }
+===
+DEFINE FUNCTION fn::test() { RETURN NONE }
+---
+
+===
+DEFINE FUNCTION fn::@name(@argument: @type) { RETURN @returned }
+===
+DEFINE FUNCTION fn::test($test: string) { RETURN NONE }
+---
+
+===
+DEFINE FUNCTION fn::@name(@argument: @type, @argument: @type) { RETURN @returned }
+===
+DEFINE FUNCTION fn::test($test: string, $test: string) { RETURN NONE }
+---
