@@ -29,215 +29,240 @@ const TYPES = [
   "record",
   "geometry",
 ];
+const KEYWORDS = [
+  "USE",
+  "NS",
+  "DB",
+  "LET",
+  "BEGIN",
+  "TRANSACTION",
+  "CANCEL",
+  "COMMIT",
+  "IF",
+  "ELSE",
+  "THEN",
+  "END",
+  "SELECT",
+  "FROM",
+  "WHERE",
+  "SPLIT",
+  "AT",
+  "GROUP",
+  "BY",
+  "ORDER",
+  "COLLATE",
+  "NUMERIC",
+  "ASC",
+  "DESC",
+  "LIMIT",
+  "START",
+  "FETCH",
+  "TIMEOUT",
+  "PARALLEL",
+  "INSERT",
+  "IGNORE",
+  "INTO",
+  "VALUES",
+  "ON",
+  "DUPLICATE",
+  "KEY",
+  "UPDATE",
+  "CREATE",
+  "CONTENT",
+  "SET",
+  "RETURN",
+  // "NONE", // NOTHING
+  "BEFORE",
+  "AFTER",
+  "DIFF",
+  "MERGE",
+  "PATCH",
+  "RELATE",
+  "DELETE",
+  "DEFINE",
+  "NAMESPACE",
+  "DATABASE",
+  "LOGIN",
+  "PASSWORD",
+  "PASSHASH",
+  "TOKEN",
+  "SCOPE",
+  "TYPE",
+  "VALUE",
+  "SESSION",
+  "SIGNUP",
+  "SIGNIN",
+  "TABLE",
+  "DROP",
+  "SCHEMAFULL",
+  "SCHEMALESS",
+  "AS",
+  "PERMISSIONS",
+  "FULL",
+  "FOR",
+  "select",
+  "update",
+  "create",
+  "delete",
+  "EVENT",
+  "WHEN",
+  "ASSERT",
+  "INDEX",
+  "FIELDS",
+  "COLUMNS",
+  "UNIQUE",
+  "REMOVE",
+  "SLEEP",
+  "INFO",
+  "KV",
+  "FUNCTION",
+  "PARAM",
+];
+const OPERATORS = [
+  "&&",
+  "AND",
+  "||",
+  "OR",
+  "??",
+  "?:",
+  "=",
+  "IS",
+  "!=",
+  "IS NOT",
+  "==",
+  "?=",
+  "*=",
+  "~",
+  "!~",
+  "?~",
+  "*~",
+  "<",
+  "<=",
+  ">",
+  ">=",
+  "+",
+  "-",
+  "*",
+  "x",
+  "/",
+  "÷",
+  "**",
+  "IN",
+  "CONTAINS",
+  "∋",
+  "CONTAINSNOT",
+  "∌",
+  "CONTAINSALL",
+  "⊇",
+  "CONTAINSANY",
+  "⊃",
+  "CONTAINSNONE",
+  "⊅",
+  "INSIDE",
+  "∈",
+  "NOTINSIDE",
+  "NOT IN",
+  "∉",
+  "ALLINSIDE",
+  "⊆",
+  "ANYINSIDE",
+  "⊂",
+  "NONEINSIDE",
+  "⊄",
+  "OUTSIDE",
+  "INTERSECTS",
+];
+
+const PUNCTUATIONS = [",", ";", ":", "(", ")", "[", "]", "{", "}", "->", "<-"];
+const PROPERTIES = [/[a-zA-Z0-9_]+:/];
+const COMMENTS = [
+  /\/\*.*\*\//,
+  seq("--", /.*/),
+  seq("/*", /.*/, repeat(seq("\n", /.*/)), "*/"),
+  seq("#", /.*/),
+  seq("//", /.*/),
+];
+const FUNCTIONS = [
+  /fn::[a-zA-Z0-9_]+/,
+  /array::[a-z]+((::)[a-z]+)?/,
+  "count",
+  /crypto::[a-z0-9]+((::)[a-z0-9]+)?/,
+  /geo::[a-z]+((::)[a-z]+)?/,
+  /http::[a-z]+/,
+  /is::[a-z]+/,
+  /math::[a-z]+/,
+  /meta::[a-z]{2}/,
+  /parse::[a-z]+::[a-z]+/,
+  /rand(::[a-z]+(::[a-z0-9]+)?)?/,
+  /session::[a-z]+/,
+  /sleep/,
+  /string::[a-zA-Z]+/,
+  /time::[a-z]+/,
+  /type::[a-z]+/,
+  /function/,
+];
+const STRINGS = [
+  seq("'", repeat(choice(/[^\\']/, seq("\\", /./))), "'"),
+
+  seq('"', repeat(choice(/[^\\"]/, seq("\\", /./))), '"'),
+];
+
+const NOTHINGS = ["null", "NULL", "none", "NONE"];
+const BOOLS = ["true", "false", "TRUE", "FALSE"];
+const RECORDS = [
+  /[a-zA-Z0-9_]+:[a-zA-Z0-9_]+/,
+  /[a-zA-Z0-9_]+:(`|⟨)([a-zA-Z0-9_]|-)+(`|⟩)/,
+];
+const NUMBERS = [/\d+(\.\d+)?/];
+const CONSTANTS = [/MATH::[A-Z_0-9]+/];
+const FUTURES = [/<future>/];
+const CASTINGS = [/<(bool|int|float|string|number|decimal|datetime|duration)>/];
+const IDENTIFIERS = [/[a-zA-Z_]+[a-zA-Z0-9_]*/];
 
 module.exports = grammar({
   name: "surrealdb",
-
   rules: {
-    source: ($) => choice(repeat($._statement)),
-
-    _statement: ($) => choice($._define_statement),
-    _define_statement: ($) => choice($.define),
-    define: ($) =>
-      seq(
-        $.keyword_define,
-        choice(
-          $.namespace,
-          $.database,
-          $.login,
-          $.token,
-          $.table,
-          $.event,
-          $.function
-        )
-      ),
-    namespace: ($) =>
-      seq($.keyword_namespace, $.identifier, optional($.semicolon)),
-    database: ($) =>
-      seq($.keyword_database, $.identifier, optional($.semicolon)),
-
-    login: ($) =>
-      seq(
-        $.keyword_login,
-        $.identifier,
-        $.on,
-        $.pass,
-        $.string,
-        optional($.semicolon)
-      ),
-
+    source_file: ($) => repeat(choice($.comment, $.token)),
     token: ($) =>
       seq(
-        $.keyword_token,
-        $.identifier,
-        $.on,
-        $.type_algorithm,
-        $.value,
-        optional($.semicolon)
-      ),
-
-    on: ($) =>
-      seq(
-        $.keyword_on,
         choice(
-          $.keyword_namespace,
-          $.keyword_database,
-          $.scope,
-          $.keyword_table
+          $.keyword,
+          $.operator,
+          $.punctuation,
+          $.type,
+          $.function,
+          $.variable,
+          $.string,
+          $.bool,
+          $.nothing,
+          $.record,
+          $.number,
+          $.constant,
+          $.future,
+          $.casting,
+          $.property,
+          $.identifier
         )
       ),
+    future: ($) => choice(...FUTURES),
+    casting: ($) => choice(...CASTINGS),
+    property: ($) => choice(...PROPERTIES),
+    identifier: ($) => choice(...IDENTIFIERS),
+    constant: ($) => choice(...CONSTANTS),
+    number: ($) => choice(...NUMBERS),
+    record: ($) => choice(...RECORDS),
+    keyword: ($) => choice(...KEYWORDS),
+    operator: ($) => choice(...OPERATORS),
+    punctuation: ($) => choice(...PUNCTUATIONS),
+    type: ($) => choice($.datatype, $.algotype),
+    datatype: ($) => choice(...TYPES),
+    algotype: ($) => choice(...TYPE_ALGORITHMS),
+    function: ($) => choice(...FUNCTIONS),
+    bool: ($) => choice(...BOOLS),
+    nothing: ($) => choice(...NOTHINGS),
+    variable: ($) => /\$[a-zA-Z_]+[a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*/,
+    comment: ($) => token(choice(...COMMENTS)),
 
-    datatype: ($) => seq(choice(...TYPES)),
-    type_algorithm: ($) => seq($.keyword_type, choice(...TYPE_ALGORITHMS)),
-    value: ($) => seq($.keyword_value, $.string),
-
-    table: ($) =>
-      seq(
-        $.keyword_table,
-        $.identifier,
-        optional($.drop),
-        optional($.schema),
-        optional($.as),
-        optional($.permissions)
-      ),
-
-    permissions: ($) =>
-      seq(
-        $.keyword_permissions,
-        optional(choice($.keyword_none, $.keyword_full, $.for))
-      ),
-
-    for: ($) => seq($.keyword_for, $.for_statement), // TODO: for_statement repeatable up to 4 times
-    for_statement: ($) =>
-      seq(choice($.for_select, $.for_create, $.for_update, $.for_delete)),
-
-    for_select: ($) => seq($.keyword_select, choice($.keyword_none)), // TODO: add @expression
-    for_create: ($) => seq($.keyword_create, choice($.keyword_none)), // TODO: add @expression
-    for_update: ($) => seq($.keyword_update, choice($.keyword_none)), // TODO: add @expression
-    for_delete: ($) => seq($.keyword_delete, choice($.keyword_none)), // TODO: add @expression
-
-    event: ($) =>
-      seq(
-        $.keyword_event,
-        $.identifier,
-        $.on,
-        $.identifier,
-        $.keyword_when,
-        $.condition,
-        $.keyword_then
-        // $.expression // TODO: develop expression rule.
-      ),
-
-    function: (
-      $ // TODO: add query rule.
-    ) =>
-      seq(
-        $.keyword_function,
-        $.function_identifier,
-        "(",
-        optional($.parameters),
-        ")",
-        "{",
-        $.return,
-        "}"
-      ),
-    function_identifier: ($) => seq(/fn::[a-zA-Z_][a-zA-Z0-9_]*/),
-    parameters: ($) => seq($.parameter, repeat(seq(",", $.parameter))),
-    parameter: ($) => seq($.variable, ":", $.datatype),
-    return: ($) => seq($.keyword_return, $.returned, optional($.semicolon)),
-    returned: ($) => seq($.expression),
-
-    drop: ($) => seq($.keyword_drop),
-    schema: ($) => seq(choice($.keyword_schemaless, $.keyword_schemafull)),
-    as: ($) => seq($.keyword_as, $.select),
-
-    select: ($) => seq($.keyword_select, $.identifier, $.from),
-    from: ($) =>
-      seq($.keyword_from, $.identifier, optional($.where), optional($.group)),
-    where: ($) => seq($.keyword_where, $.condition),
-    condition: ($) => seq($.identifier, $.operator, $.identifier), // TODO: develop condition rule, just a placeholder prototype
-    group: ($) => seq($.keyword_group, choice($.keyword_by), $.identifier), // TODO: improve rule, just a prototype
-
-    expression: ($) => seq($.keyword_none),
-
-    operator: ($) => choice(token("-"), token("+"), token("=")), // TODO: include all operators
-
-    keyword_define: ($) => "DEFINE",
-    keyword_namespace: ($) => "NAMESPACE",
-    keyword_database: ($) => "DATABASE",
-    keyword_scope: ($) => "SCOPE",
-    keyword_login: ($) => "LOGIN",
-    keyword_token: ($) => "TOKEN",
-    keyword_table: ($) => "TABLE",
-    keyword_event: ($) => "EVENT",
-    keyword_function: ($) => "FUNCTION",
-
-    keyword_drop: ($) => "DROP",
-
-    keyword_schemafull: ($) => "SCHEMAFULL",
-    keyword_schemaless: ($) => "SCHEMALESS",
-
-    keyword_permissions: ($) => "PERMISSIONS",
-    keyword_for: ($) => "FOR",
-
-    keyword_type: ($) => "TYPE",
-    keyword_value: ($) => "VALUE",
-    keyword_none: ($) => "NONE",
-    keyword_full: ($) => "FULL",
-
-    keyword_on: ($) => "ON",
-    keyword_as: ($) => "AS",
-    keyword_by: ($) => "BY",
-
-    keyword_password: ($) => "PASSWORD",
-    keyword_passhash: ($) => "PASSHASH",
-
-    keyword_select: ($) => "SELECT",
-    keyword_create: ($) => "CREATE",
-    keyword_update: ($) => "UPDATE",
-    keyword_delete: ($) => "DELETE",
-    keyword_from: ($) => "FROM",
-    keyword_where: ($) => "WHERE",
-    keyword_group: ($) => "GROUP",
-
-    keyword_when: ($) => "WHEN",
-    keyword_then: ($) => "THEN",
-
-    keyword_function: ($) => "FUNCTION",
-    keyword_return: ($) => "RETURN",
-
-    pass: ($) => choice($.keyword_password, $.keyword_passhash),
-    scope: ($) => seq($.keyword_scope, $.identifier),
-    string: ($) => choice($.single_quoted_string, $.double_quoted_string),
-    single_quoted_string: ($) =>
-      seq("'", repeat(choice(/[^\\']/, seq("\\", /./))), "'"),
-
-    double_quoted_string: ($) =>
-      seq('"', repeat(choice(/[^\\"]/, seq("\\", /./))), '"'),
-
-    semicolon: ($) => ";",
-
-    identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
-    variable: ($) => /\$[a-zA-Z_][a-zA-Z0-9_]*/,
-
-    comment: ($) =>
-      token(
-        choice(
-          seq("--", /.*/),
-          seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"),
-          seq("#", /.*/)
-        )
-      ),
+    string: ($) => choice(...STRINGS),
   },
-
-  extras: ($) => [
-    /\s/, // Whitespace
-    $.comment,
-  ],
-
-  conflicts: ($) => [
-    // ... any conflicts in your grammar
-  ],
-
-  word: ($) => $.identifier,
 });
