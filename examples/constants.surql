@@ -1,0 +1,2 @@
+MATH::E
+MATH::FRAC_1_PI
