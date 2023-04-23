@@ -25,6 +25,11 @@
     "fields": {}
   },
   {
+    "type": "duration",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "function",
     "named": true,
     "fields": {}
@@ -116,6 +121,10 @@
         },
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "duration",
           "named": true
         },
         {

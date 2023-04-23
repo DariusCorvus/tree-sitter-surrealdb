@@ -86,6 +86,10 @@
             {
               "type": "SYMBOL",
               "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "duration"
             }
           ]
         }
@@ -124,6 +128,15 @@
         {
           "type": "PATTERN",
           "value": "[a-zA-Z_]+[a-zA-Z0-9_]*"
+        }
+      ]
+    },
+    "duration": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\d+(y|w|d|h|m|s)+"
         }
       ]
     },
