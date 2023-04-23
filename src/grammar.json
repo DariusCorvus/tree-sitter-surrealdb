@@ -108,67 +108,57 @@
       "members": [
         {
           "type": "STRING",
-          "value": "function"
+          "value": "function(){"
         },
         {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        },
-        {
-          "type": "STRING",
-          "value": "{"
-        },
-        {
-          "type": "REPEAT",
+          "type": "PREC",
+          "value": 2,
           "content": {
             "type": "SYMBOL",
-            "name": "script_content"
+            "name": "scripting_content"
           }
         },
         {
-          "type": "STRING",
-          "value": "}"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "};"
+            },
+            {
+              "type": "STRING",
+              "value": "},"
+            }
+          ]
         }
       ]
     },
-    "script": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "{"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "script_content"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "}"
-        }
-      ]
+    "scripting_content": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_scripting_statement"
+      }
     },
-    "script_content": {
+    "_scripting_statement": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "script"
+          "name": "token"
+        }
+      ]
+    },
+    "curly_braces": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "any_char"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "new_line"
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },
