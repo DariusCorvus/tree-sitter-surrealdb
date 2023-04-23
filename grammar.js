@@ -218,6 +218,7 @@ const CONSTANTS = [/MATH::[A-Z_0-9]+/];
 const FUTURES = [/<future>/];
 const CASTINGS = [/<(bool|int|float|string|number|decimal|datetime|duration)>/];
 const IDENTIFIERS = [/[a-zA-Z_]+[a-zA-Z0-9_]*/];
+const DURATIONS = [/\d+(y|w|d|h|m|s)+/];
 
 module.exports = grammar({
   name: "surrealdb",
@@ -241,13 +242,15 @@ module.exports = grammar({
           $.future,
           $.casting,
           $.property,
-          $.identifier
+          $.identifier,
+          $.duration
         )
       ),
     future: ($) => choice(...FUTURES),
     casting: ($) => choice(...CASTINGS),
     property: ($) => choice(...PROPERTIES),
     identifier: ($) => choice(...IDENTIFIERS),
+    duration: ($) => choice(...DURATIONS),
     constant: ($) => choice(...CONSTANTS),
     number: ($) => choice(...NUMBERS),
     record: ($) => choice(...RECORDS),
