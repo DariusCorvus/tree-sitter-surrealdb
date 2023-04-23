@@ -255,9 +255,9 @@ module.exports = grammar({
         )
       ),
     scripting_function: ($) =>
-      seq("function", "(", ")", "{", repeat($.script_content), "}"),
-    script: ($) => seq("{", repeat($.script_content), "}"),
-    script_content: ($) => choice($.script, $.any_char, $.new_line),
+      seq("function(){", prec(2, $.scripting_content), choice("};", "},")),
+    scripting_content: ($) => repeat1($._scripting_statement),
+    _scripting_statement: ($) => choice($.token),
     future: ($) => choice(...FUTURES),
     casting: ($) => choice(...CASTINGS),
     property: ($) => choice(...PROPERTIES),
