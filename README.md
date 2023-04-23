@@ -12,7 +12,7 @@
     - [x] basic types
     - [x] strings
     - [x] numbers
-    - [ ] datetimess tokenized as string
+    - [ ] datetimes tokenized as string
     - [x] durations
     - [x] futures
     - [x] casting
@@ -37,3 +37,4 @@
   - [x] parameters
   - [x] transactions
   - [x] functions
+  - [x] scripting functions
