@@ -3,6 +3,7 @@
 [SurrealDB](https://surrealdb.com) grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
 
 ## features
+
 - [x] highlighting
 - [x] tokenization
   - [x] comments
@@ -11,7 +12,8 @@
     - [x] basic types
     - [x] strings
     - [x] numbers
-    - [ ] datetimes, at the time gets tokenized as string
+    - [ ] datetimess tokenized as string
+    - [x] durations
     - [x] futures
     - [x] casting
   - [x] Statements
