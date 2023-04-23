@@ -1,0 +1,14 @@
+-- INFO statement
+INFO FOR KV;
+
+
+INFO FOR NS;
+
+
+INFO FOR DB;
+
+
+INFO FOR SCOPE user;
+
+
+INFO FOR TABLE user;
