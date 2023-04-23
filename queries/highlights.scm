@@ -1,14 +1,18 @@
+
 (keyword) @keyword
 (string) @string
 (number) @number
 (punctuation) @punctuation 
 (operator) @operator
 (variable) @type
-(constant) @constant
+(constant) @constant.builtin
 (function) @function
-(bool) @type
+(bool) @boolean
 (nothing) @type
 (comment) @comment
 (record) @type
 (function) @function
-(property) @property
+(property) @field
+(identifier) @identifier
+(casting) @conceal
+
