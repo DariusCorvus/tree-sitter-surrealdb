@@ -1,22 +1,37 @@
 # tree-sitter-surrealdb
 
-SurrealDB grammar for (tree-sitter)[https://github.com/tree-sitter/tree-sitter]
+[SurrealDB](https://surrealdb.com) grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
 
-## development
-
-### recommend requirement
-
-tree-sitter-cli from cargo
-
-```
-cargo install tree-sitter-cli
-```
-
-### installation
-
-```bash
-npm install
-tree-sitter init-config
-tree-sitter generate
-
-```
+## features
+- [x] highlighting
+- [x] tokenization
+  - [x] comments
+  - [ ] Data model
+    - [x] records
+    - [x] basic types
+    - [x] strings
+    - [x] numbers
+    - [ ] datetimes, at the time gets tokenized as string
+    - [x] futures
+    - [x] casting
+  - [x] Statements
+    - [x] use
+    - [x] let
+    - [x] begin
+    - [x] cancel
+    - [x] commit
+    - [x] if else
+    - [x] select
+    - [x] insert
+    - [x] create
+    - [x] update
+    - [x] relate
+    - [x] delete
+    - [x] define
+    - [x] remove
+    - [x] info
+    - [x] sleep
+  - [x] operators
+  - [x] parameters
+  - [x] transactions
+  - [x] functions
