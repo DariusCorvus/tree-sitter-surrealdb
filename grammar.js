@@ -29,6 +29,7 @@ const TYPES = [
   "record",
   "geometry",
 ];
+
 const KEYWORDS = [
   "USE",
   "NS",
@@ -118,6 +119,7 @@ const KEYWORDS = [
   "FUNCTION",
   "PARAM",
 ];
+
 const OPERATORS = [
   "&&",
   "AND",
@@ -173,7 +175,8 @@ const OPERATORS = [
   "INTERSECTS",
 ];
 
-const PUNCTUATIONS = [",", ";", ":", "(", ")", "[", "]", "{", "}", "->", "<-"];
+const PUNCTUATIONS = ["(", ")", "[", "]", "{", "}", "->", "<-"];
+const DELIMITERS = [",", ";", ":"];
 const PROPERTIES = [/[a-zA-Z0-9_]+:/];
 const COMMENTS = [
   /\/\*.*\*\//,
@@ -182,6 +185,7 @@ const COMMENTS = [
   seq("#", /.*/),
   seq("//", /.*/),
 ];
+
 const FUNCTIONS = [
   /fn::[a-zA-Z0-9_]+/,
   /array::[a-z]+((::)[a-z]+)?/,
@@ -201,18 +205,20 @@ const FUNCTIONS = [
   /type::[a-z]+/,
   /function/,
 ];
+
 const STRINGS = [
   seq("'", repeat(choice(/[^\\']/, seq("\\", /./))), "'"),
-
   seq('"', repeat(choice(/[^\\"]/, seq("\\", /./))), '"'),
 ];
 
 const NOTHINGS = ["null", "NULL", "none", "NONE"];
 const BOOLS = ["true", "false", "TRUE", "FALSE"];
+
 const RECORDS = [
   /[a-zA-Z0-9_]+:[a-zA-Z0-9_]+/,
   /[a-zA-Z0-9_]+:(`|⟨)([a-zA-Z0-9_]|-)+(`|⟩)/,
 ];
+
 const NUMBERS = [/\d+(\.\d+)?/];
 const CONSTANTS = [/MATH::[A-Z_0-9]+/];
 const FUTURES = [/<future>/];
@@ -230,6 +236,7 @@ module.exports = grammar({
           $.keyword,
           $.operator,
           $.punctuation,
+          $.delimiter,
           $.type,
           $.function,
           $.variable,
@@ -243,9 +250,14 @@ module.exports = grammar({
           $.casting,
           $.property,
           $.identifier,
-          $.duration
+          $.duration,
+          $.scripting_function
         )
       ),
+    scripting_function: ($) =>
+      seq("function", "(", ")", "{", repeat($.script_content), "}"),
+    script: ($) => seq("{", repeat($.script_content), "}"),
+    script_content: ($) => choice($.script, $.any_char, $.new_line),
     future: ($) => choice(...FUTURES),
     casting: ($) => choice(...CASTINGS),
     property: ($) => choice(...PROPERTIES),
@@ -257,6 +269,7 @@ module.exports = grammar({
     keyword: ($) => choice(...KEYWORDS),
     operator: ($) => choice(...OPERATORS),
     punctuation: ($) => choice(...PUNCTUATIONS),
+    delimiter: ($) => choice(...DELIMITERS),
     type: ($) => choice($.datatype, $.algotype),
     datatype: ($) => choice(...TYPES),
     algotype: ($) => choice(...TYPE_ALGORITHMS),
@@ -267,5 +280,7 @@ module.exports = grammar({
     comment: ($) => token(choice(...COMMENTS)),
 
     string: ($) => choice(...STRINGS),
+    any_char: ($) => /[^{}\n]/,
+    new_line: ($) => "\n",
   },
 });
