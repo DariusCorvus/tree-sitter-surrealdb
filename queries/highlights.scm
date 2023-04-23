@@ -15,4 +15,4 @@
 (property) @field
 (identifier) @identifier
 (casting) @conceal
-
+(duration) @number
