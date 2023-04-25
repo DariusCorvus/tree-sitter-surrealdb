@@ -195,7 +195,7 @@ const FUNCTIONS = [
   /http::[a-z]+/,
   /is::[a-z]+/,
   /math::[a-z]+/,
-  /meta::[a-z]/,
+  /meta::[a-z]+/,
   /parse::[a-z]+::[a-z]+/,
   /rand(::[a-z]+(::[a-z0-9]+)?)?/,
   /session::[a-z]+/,
