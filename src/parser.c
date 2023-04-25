@@ -8375,6 +8375,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 786:
       ACCEPT_TOKEN(aux_sym_function_token8);
+      if (('a' <= lookahead && lookahead <= 'z')) ADVANCE(786);
       END_STATE();
     case 787:
       ACCEPT_TOKEN(aux_sym_function_token9);

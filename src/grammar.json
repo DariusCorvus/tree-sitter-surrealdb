@@ -1005,7 +1005,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "meta::[a-z]"
+          "value": "meta::[a-z]+"
         },
         {
           "type": "PATTERN",
