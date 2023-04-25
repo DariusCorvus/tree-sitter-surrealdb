@@ -149,19 +149,6 @@
         }
       ]
     },
-    "curly_braces": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "{"
-        },
-        {
-          "type": "STRING",
-          "value": "}"
-        }
-      ]
-    },
     "future": {
       "type": "CHOICE",
       "members": [
@@ -1018,7 +1005,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "meta::[a-z]{2}"
+          "value": "meta::[a-z]"
         },
         {
           "type": "PATTERN",
