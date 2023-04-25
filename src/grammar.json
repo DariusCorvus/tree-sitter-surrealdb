@@ -538,6 +538,10 @@
         },
         {
           "type": "STRING",
+          "value": "FIELD"
+        },
+        {
+          "type": "STRING",
           "value": "FIELDS"
         },
         {

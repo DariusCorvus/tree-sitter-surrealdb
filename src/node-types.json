@@ -517,6 +517,10 @@
     "named": false
   },
   {
+    "type": "FIELD",
+    "named": false
+  },
+  {
     "type": "FIELDS",
     "named": false
   },
