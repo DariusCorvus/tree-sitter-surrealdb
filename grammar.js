@@ -109,6 +109,7 @@ const KEYWORDS = [
   "WHEN",
   "ASSERT",
   "INDEX",
+  "FIELD",
   "FIELDS",
   "COLUMNS",
   "UNIQUE",
