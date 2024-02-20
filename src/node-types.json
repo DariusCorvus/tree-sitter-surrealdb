@@ -45,16 +45,6 @@
     "fields": {}
   },
   {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "keyword",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "nothing",
     "named": true,
     "fields": {}
@@ -93,7 +83,7 @@
       "required": true,
       "types": [
         {
-          "type": "token",
+          "type": "tokens",
           "named": true
         }
       ]
@@ -127,7 +117,7 @@
           "named": true
         },
         {
-          "type": "token",
+          "type": "tokens",
           "named": true
         }
       ]
@@ -139,7 +129,7 @@
     "fields": {}
   },
   {
-    "type": "token",
+    "type": "tokens",
     "named": true,
     "fields": {},
     "children": {
@@ -172,10 +162,6 @@
         },
         {
           "type": "future",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -361,10 +347,6 @@
     "named": false
   },
   {
-    "type": "AFTER",
-    "named": false
-  },
-  {
     "type": "ALLINSIDE",
     "named": false
   },
@@ -374,50 +356,6 @@
   },
   {
     "type": "ANYINSIDE",
-    "named": false
-  },
-  {
-    "type": "AS",
-    "named": false
-  },
-  {
-    "type": "ASC",
-    "named": false
-  },
-  {
-    "type": "ASSERT",
-    "named": false
-  },
-  {
-    "type": "AT",
-    "named": false
-  },
-  {
-    "type": "BEFORE",
-    "named": false
-  },
-  {
-    "type": "BEGIN",
-    "named": false
-  },
-  {
-    "type": "BY",
-    "named": false
-  },
-  {
-    "type": "CANCEL",
-    "named": false
-  },
-  {
-    "type": "COLLATE",
-    "named": false
-  },
-  {
-    "type": "COLUMNS",
-    "named": false
-  },
-  {
-    "type": "COMMIT",
     "named": false
   },
   {
@@ -441,55 +379,7 @@
     "named": false
   },
   {
-    "type": "CONTENT",
-    "named": false
-  },
-  {
-    "type": "CREATE",
-    "named": false
-  },
-  {
-    "type": "DATABASE",
-    "named": false
-  },
-  {
-    "type": "DB",
-    "named": false
-  },
-  {
-    "type": "DEFINE",
-    "named": false
-  },
-  {
-    "type": "DELETE",
-    "named": false
-  },
-  {
-    "type": "DESC",
-    "named": false
-  },
-  {
-    "type": "DIFF",
-    "named": false
-  },
-  {
-    "type": "DROP",
-    "named": false
-  },
-  {
-    "type": "DUPLICATE",
-    "named": false
-  },
-  {
     "type": "EDDSA",
-    "named": false
-  },
-  {
-    "type": "ELSE",
-    "named": false
-  },
-  {
-    "type": "END",
     "named": false
   },
   {
@@ -505,43 +395,7 @@
     "named": false
   },
   {
-    "type": "EVENT",
-    "named": false
-  },
-  {
     "type": "FALSE",
-    "named": false
-  },
-  {
-    "type": "FETCH",
-    "named": false
-  },
-  {
-    "type": "FIELD",
-    "named": false
-  },
-  {
-    "type": "FIELDS",
-    "named": false
-  },
-  {
-    "type": "FOR",
-    "named": false
-  },
-  {
-    "type": "FROM",
-    "named": false
-  },
-  {
-    "type": "FULL",
-    "named": false
-  },
-  {
-    "type": "FUNCTION",
-    "named": false
-  },
-  {
-    "type": "GROUP",
     "named": false
   },
   {
@@ -557,27 +411,7 @@
     "named": false
   },
   {
-    "type": "IF",
-    "named": false
-  },
-  {
-    "type": "IGNORE",
-    "named": false
-  },
-  {
     "type": "IN",
-    "named": false
-  },
-  {
-    "type": "INDEX",
-    "named": false
-  },
-  {
-    "type": "INFO",
-    "named": false
-  },
-  {
-    "type": "INSERT",
     "named": false
   },
   {
@@ -589,43 +423,11 @@
     "named": false
   },
   {
-    "type": "INTO",
-    "named": false
-  },
-  {
     "type": "IS",
     "named": false
   },
   {
     "type": "IS NOT",
-    "named": false
-  },
-  {
-    "type": "KEY",
-    "named": false
-  },
-  {
-    "type": "KV",
-    "named": false
-  },
-  {
-    "type": "LET",
-    "named": false
-  },
-  {
-    "type": "LIMIT",
-    "named": false
-  },
-  {
-    "type": "LOGIN",
-    "named": false
-  },
-  {
-    "type": "MERGE",
-    "named": false
-  },
-  {
-    "type": "NAMESPACE",
     "named": false
   },
   {
@@ -645,19 +447,7 @@
     "named": false
   },
   {
-    "type": "NS",
-    "named": false
-  },
-  {
     "type": "NULL",
-    "named": false
-  },
-  {
-    "type": "NUMERIC",
-    "named": false
-  },
-  {
-    "type": "ON",
     "named": false
   },
   {
@@ -665,35 +455,7 @@
     "named": false
   },
   {
-    "type": "ORDER",
-    "named": false
-  },
-  {
     "type": "OUTSIDE",
-    "named": false
-  },
-  {
-    "type": "PARALLEL",
-    "named": false
-  },
-  {
-    "type": "PARAM",
-    "named": false
-  },
-  {
-    "type": "PASSHASH",
-    "named": false
-  },
-  {
-    "type": "PASSWORD",
-    "named": false
-  },
-  {
-    "type": "PATCH",
-    "named": false
-  },
-  {
-    "type": "PERMISSIONS",
     "named": false
   },
   {
@@ -709,18 +471,6 @@
     "named": false
   },
   {
-    "type": "RELATE",
-    "named": false
-  },
-  {
-    "type": "REMOVE",
-    "named": false
-  },
-  {
-    "type": "RETURN",
-    "named": false
-  },
-  {
     "type": "RS256",
     "named": false
   },
@@ -733,103 +483,7 @@
     "named": false
   },
   {
-    "type": "SCHEMAFULL",
-    "named": false
-  },
-  {
-    "type": "SCHEMALESS",
-    "named": false
-  },
-  {
-    "type": "SCOPE",
-    "named": false
-  },
-  {
-    "type": "SELECT",
-    "named": false
-  },
-  {
-    "type": "SESSION",
-    "named": false
-  },
-  {
-    "type": "SET",
-    "named": false
-  },
-  {
-    "type": "SIGNIN",
-    "named": false
-  },
-  {
-    "type": "SIGNUP",
-    "named": false
-  },
-  {
-    "type": "SLEEP",
-    "named": false
-  },
-  {
-    "type": "SPLIT",
-    "named": false
-  },
-  {
-    "type": "START",
-    "named": false
-  },
-  {
-    "type": "TABLE",
-    "named": false
-  },
-  {
-    "type": "THEN",
-    "named": false
-  },
-  {
-    "type": "TIMEOUT",
-    "named": false
-  },
-  {
-    "type": "TOKEN",
-    "named": false
-  },
-  {
-    "type": "TRANSACTION",
-    "named": false
-  },
-  {
     "type": "TRUE",
-    "named": false
-  },
-  {
-    "type": "TYPE",
-    "named": false
-  },
-  {
-    "type": "UNIQUE",
-    "named": false
-  },
-  {
-    "type": "UPDATE",
-    "named": false
-  },
-  {
-    "type": "USE",
-    "named": false
-  },
-  {
-    "type": "VALUE",
-    "named": false
-  },
-  {
-    "type": "VALUES",
-    "named": false
-  },
-  {
-    "type": "WHEN",
-    "named": false
-  },
-  {
-    "type": "WHERE",
     "named": false
   },
   {
@@ -865,19 +519,11 @@
     "named": false
   },
   {
-    "type": "create",
-    "named": false
-  },
-  {
     "type": "datetime",
     "named": false
   },
   {
     "type": "decimal",
-    "named": false
-  },
-  {
-    "type": "delete",
     "named": false
   },
   {
@@ -905,6 +551,10 @@
     "named": false
   },
   {
+    "type": "keyword",
+    "named": true
+  },
+  {
     "type": "none",
     "named": false
   },
@@ -925,19 +575,11 @@
     "named": false
   },
   {
-    "type": "select",
-    "named": false
-  },
-  {
     "type": "string",
     "named": false
   },
   {
     "type": "true",
-    "named": false
-  },
-  {
-    "type": "update",
     "named": false
   },
   {

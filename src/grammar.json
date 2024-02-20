@@ -1,5 +1,6 @@
 {
   "name": "surrealdb",
+  "word": "identifier",
   "rules": {
     "source_file": {
       "type": "REPEAT",
@@ -12,21 +13,17 @@
           },
           {
             "type": "SYMBOL",
-            "name": "token"
+            "name": "tokens"
           }
         ]
       }
     },
-    "token": {
+    "tokens": {
       "type": "SEQ",
       "members": [
         {
           "type": "CHOICE",
           "members": [
-            {
-              "type": "SYMBOL",
-              "name": "keyword"
-            },
             {
               "type": "SYMBOL",
               "name": "operator"
@@ -89,11 +86,11 @@
             },
             {
               "type": "SYMBOL",
-              "name": "identifier"
+              "name": "duration"
             },
             {
               "type": "SYMBOL",
-              "name": "duration"
+              "name": "keyword"
             },
             {
               "type": "SYMBOL",
@@ -145,7 +142,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "token"
+          "name": "tokens"
         }
       ]
     },
@@ -177,13 +174,8 @@
       ]
     },
     "identifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[a-zA-Z_]+[a-zA-Z0-9_]*"
-        }
-      ]
+      "type": "PATTERN",
+      "value": "[a-zA-Z_]+[a-zA-Z0-9_]*"
     },
     "duration": {
       "type": "CHOICE",
@@ -226,357 +218,593 @@
       ]
     },
     "keyword": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "USE"
-        },
-        {
-          "type": "STRING",
-          "value": "NS"
-        },
-        {
-          "type": "STRING",
-          "value": "DB"
-        },
-        {
-          "type": "STRING",
-          "value": "LET"
-        },
-        {
-          "type": "STRING",
-          "value": "BEGIN"
-        },
-        {
-          "type": "STRING",
-          "value": "TRANSACTION"
-        },
-        {
-          "type": "STRING",
-          "value": "CANCEL"
-        },
-        {
-          "type": "STRING",
-          "value": "COMMIT"
-        },
-        {
-          "type": "STRING",
-          "value": "IF"
-        },
-        {
-          "type": "STRING",
-          "value": "ELSE"
-        },
-        {
-          "type": "STRING",
-          "value": "THEN"
-        },
-        {
-          "type": "STRING",
-          "value": "END"
-        },
-        {
-          "type": "STRING",
-          "value": "SELECT"
-        },
-        {
-          "type": "STRING",
-          "value": "FROM"
-        },
-        {
-          "type": "STRING",
-          "value": "WHERE"
-        },
-        {
-          "type": "STRING",
-          "value": "SPLIT"
-        },
-        {
-          "type": "STRING",
-          "value": "AT"
-        },
-        {
-          "type": "STRING",
-          "value": "GROUP"
-        },
-        {
-          "type": "STRING",
-          "value": "BY"
-        },
-        {
-          "type": "STRING",
-          "value": "ORDER"
-        },
-        {
-          "type": "STRING",
-          "value": "COLLATE"
-        },
-        {
-          "type": "STRING",
-          "value": "NUMERIC"
-        },
-        {
-          "type": "STRING",
-          "value": "ASC"
-        },
-        {
-          "type": "STRING",
-          "value": "DESC"
-        },
-        {
-          "type": "STRING",
-          "value": "LIMIT"
-        },
-        {
-          "type": "STRING",
-          "value": "START"
-        },
-        {
-          "type": "STRING",
-          "value": "FETCH"
-        },
-        {
-          "type": "STRING",
-          "value": "TIMEOUT"
-        },
-        {
-          "type": "STRING",
-          "value": "PARALLEL"
-        },
-        {
-          "type": "STRING",
-          "value": "INSERT"
-        },
-        {
-          "type": "STRING",
-          "value": "IGNORE"
-        },
-        {
-          "type": "STRING",
-          "value": "INTO"
-        },
-        {
-          "type": "STRING",
-          "value": "VALUES"
-        },
-        {
-          "type": "STRING",
-          "value": "ON"
-        },
-        {
-          "type": "STRING",
-          "value": "DUPLICATE"
-        },
-        {
-          "type": "STRING",
-          "value": "KEY"
-        },
-        {
-          "type": "STRING",
-          "value": "UPDATE"
-        },
-        {
-          "type": "STRING",
-          "value": "CREATE"
-        },
-        {
-          "type": "STRING",
-          "value": "CONTENT"
-        },
-        {
-          "type": "STRING",
-          "value": "SET"
-        },
-        {
-          "type": "STRING",
-          "value": "RETURN"
-        },
-        {
-          "type": "STRING",
-          "value": "BEFORE"
-        },
-        {
-          "type": "STRING",
-          "value": "AFTER"
-        },
-        {
-          "type": "STRING",
-          "value": "DIFF"
-        },
-        {
-          "type": "STRING",
-          "value": "MERGE"
-        },
-        {
-          "type": "STRING",
-          "value": "PATCH"
-        },
-        {
-          "type": "STRING",
-          "value": "RELATE"
-        },
-        {
-          "type": "STRING",
-          "value": "DELETE"
-        },
-        {
-          "type": "STRING",
-          "value": "DEFINE"
-        },
-        {
-          "type": "STRING",
-          "value": "NAMESPACE"
-        },
-        {
-          "type": "STRING",
-          "value": "DATABASE"
-        },
-        {
-          "type": "STRING",
-          "value": "LOGIN"
-        },
-        {
-          "type": "STRING",
-          "value": "PASSWORD"
-        },
-        {
-          "type": "STRING",
-          "value": "PASSHASH"
-        },
-        {
-          "type": "STRING",
-          "value": "TOKEN"
-        },
-        {
-          "type": "STRING",
-          "value": "SCOPE"
-        },
-        {
-          "type": "STRING",
-          "value": "TYPE"
-        },
-        {
-          "type": "STRING",
-          "value": "VALUE"
-        },
-        {
-          "type": "STRING",
-          "value": "SESSION"
-        },
-        {
-          "type": "STRING",
-          "value": "SIGNUP"
-        },
-        {
-          "type": "STRING",
-          "value": "SIGNIN"
-        },
-        {
-          "type": "STRING",
-          "value": "TABLE"
-        },
-        {
-          "type": "STRING",
-          "value": "DROP"
-        },
-        {
-          "type": "STRING",
-          "value": "SCHEMAFULL"
-        },
-        {
-          "type": "STRING",
-          "value": "SCHEMALESS"
-        },
-        {
-          "type": "STRING",
-          "value": "AS"
-        },
-        {
-          "type": "STRING",
-          "value": "PERMISSIONS"
-        },
-        {
-          "type": "STRING",
-          "value": "FULL"
-        },
-        {
-          "type": "STRING",
-          "value": "FOR"
-        },
-        {
-          "type": "STRING",
-          "value": "select"
-        },
-        {
-          "type": "STRING",
-          "value": "update"
-        },
-        {
-          "type": "STRING",
-          "value": "create"
-        },
-        {
-          "type": "STRING",
-          "value": "delete"
-        },
-        {
-          "type": "STRING",
-          "value": "EVENT"
-        },
-        {
-          "type": "STRING",
-          "value": "WHEN"
-        },
-        {
-          "type": "STRING",
-          "value": "ASSERT"
-        },
-        {
-          "type": "STRING",
-          "value": "INDEX"
-        },
-        {
-          "type": "STRING",
-          "value": "FIELD"
-        },
-        {
-          "type": "STRING",
-          "value": "FIELDS"
-        },
-        {
-          "type": "STRING",
-          "value": "COLUMNS"
-        },
-        {
-          "type": "STRING",
-          "value": "UNIQUE"
-        },
-        {
-          "type": "STRING",
-          "value": "REMOVE"
-        },
-        {
-          "type": "STRING",
-          "value": "SLEEP"
-        },
-        {
-          "type": "STRING",
-          "value": "INFO"
-        },
-        {
-          "type": "STRING",
-          "value": "KV"
-        },
-        {
-          "type": "STRING",
-          "value": "FUNCTION"
-        },
-        {
-          "type": "STRING",
-          "value": "PARAM"
-        }
-      ]
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[uU][sS][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[nN][sS]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[dD][bB]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[lL][eE][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[bB][eE][gG][iI][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[tT][rR][aA][nN][sS][aA][cC][tT][iI][oO][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[cC][aA][nN][cC][eE][lL]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[cC][oO][mM][mM][iI][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[iI][fF]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[eE][lL][sS][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[tT][hH][eE][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[eE][nN][dD]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][eE][lL][eE][cC][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][rR][oO][mM]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[wW][hH][eE][rR][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][pP][lL][iI][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[aA][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[gG][rR][oO][uU][pP]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[bB][yY]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[oO][rR][dD][eE][rR]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[cC][oO][lL][lL][aA][tT][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[nN][uU][mM][eE][rR][iI][cC]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[aA][sS][cC]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[dD][eE][sS][cC]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[lL][iI][mM][iI][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][tT][aA][rR][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][eE][tT][cC][hH]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[tT][iI][mM][eE][oO][uU][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[pP][aA][rR][aA][lL][lL][eE][lL]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[iI][nN][sS][eE][rR][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[iI][gG][nN][oO][rR][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[iI][nN][tT][oO]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[vV][aA][lL][uU][eE][sS]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[oO][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[dD][uU][pP][lL][iI][cC][aA][tT][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[kK][eE][yY]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[uU][pP][dD][aA][tT][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[cC][rR][eE][aA][tT][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[cC][oO][nN][tT][eE][nN][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][eE][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[rR][eE][tT][uU][rR][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[bB][eE][fF][oO][rR][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[aA][fF][tT][eE][rR]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[dD][iI][fF][fF]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[mM][eE][rR][gG][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[pP][aA][tT][cC][hH]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[rR][eE][lL][aA][tT][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[dD][eE][lL][eE][tT][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[dD][eE][fF][iI][nN][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[nN][aA][mM][eE][sS][pP][aA][cC][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[dD][aA][tT][aA][bB][aA][sS][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[lL][oO][gG][iI][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[pP][aA][sS][sS][wW][oO][rR][dD]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[pP][aA][sS][sS][hH][aA][sS][hH]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[tT][oO][kK][eE][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][cC][oO][pP][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[tT][yY][pP][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[vV][aA][lL][uU][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][eE][sS][sS][iI][oO][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][iI][gG][nN][uU][pP]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][iI][gG][nN][iI][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[tT][aA][bB][lL][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[dD][rR][oO][pP]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][cC][hH][eE][mM][aA][fF][uU][lL][lL]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][cC][hH][eE][mM][aA][lL][eE][sS][sS]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[aA][sS]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[pP][eE][rR][mM][iI][sS][sS][iI][oO][nN][sS]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][uU][lL][lL]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][oO][rR]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[eE][vV][eE][nN][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[wW][hH][eE][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[aA][sS][sS][eE][rR][tT]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[iI][nN][dD][eE][xX]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][iI][eE][lL][dD]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][iI][eE][lL][dD][sS]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[cC][oO][lL][uU][mM][nN][sS]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[uU][nN][iI][qQ][uU][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[rR][eE][mM][oO][vV][eE]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][lL][eE][eE][pP]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[iI][nN][fF][oO]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[kK][vV]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][uU][nN][cC][tT][iI][oO][nN]"
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[pP][aA][rR][aA][mM]"
+            }
+          }
+        ]
+      }
     },
     "operator": {
       "type": "CHOICE",
@@ -1267,8 +1495,8 @@
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "\\s"
+      "type": "STRING",
+      "value": "s"
     }
   ],
   "conflicts": [],
