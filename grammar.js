@@ -72,7 +72,6 @@ const KEYWORDS = [
   "CONTENT",
   "SET",
   "RETURN",
-  // "NONE", // NOTHING
   "BEFORE",
   "AFTER",
   "DIFF",
@@ -101,10 +100,6 @@ const KEYWORDS = [
   "PERMISSIONS",
   "FULL",
   "FOR",
-  "select",
-  "update",
-  "create",
-  "delete",
   "EVENT",
   "WHEN",
   "ASSERT",
@@ -176,6 +171,7 @@ const OPERATORS = [
   "INTERSECTS",
 ];
 
+
 const PUNCTUATIONS = ["(", ")", "[", "]", "{", "}", "->", "<-"];
 const DELIMITERS = [",", ";", ":"];
 const PROPERTIES = [/[a-zA-Z0-9_]+:/];
@@ -224,17 +220,17 @@ const NUMBERS = [/\d+(\.\d+)?/];
 const CONSTANTS = [/MATH::[A-Z_0-9]+/];
 const FUTURES = [/<future>/];
 const CASTINGS = [/<(bool|int|float|string|number|decimal|datetime|duration)>/];
-const IDENTIFIERS = [/[a-zA-Z_]+[a-zA-Z0-9_]*/];
 const DURATIONS = [/\d+(y|w|d|h|m|s)+/];
 
 module.exports = grammar({
   name: "surrealdb",
+  extras: $ => ["\s"],
+  word: $ => $.identifier,
   rules: {
-    source_file: ($) => repeat(choice($.comment, $.token)),
-    token: ($) =>
+    source_file: ($) => repeat(choice($.comment,$.tokens)),
+    tokens: ($) =>
       seq(
         choice(
-          $.keyword,
           $.operator,
           $.punctuation,
           $.delimiter,
@@ -250,24 +246,24 @@ module.exports = grammar({
           $.future,
           $.casting,
           $.property,
-          $.identifier,
           $.duration,
-          $.scripting_function
-        )
+          $.keyword,
+          $.scripting_function,
+        ),
       ),
     scripting_function: ($) =>
       seq("function(){", prec(2, $.scripting_content), choice("};", "},")),
     scripting_content: ($) => repeat1($._scripting_statement),
-    _scripting_statement: ($) => choice($.token),
+    _scripting_statement: ($) => choice($.tokens),
     future: ($) => choice(...FUTURES),
     casting: ($) => choice(...CASTINGS),
     property: ($) => choice(...PROPERTIES),
-    identifier: ($) => choice(...IDENTIFIERS),
+    identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
     duration: ($) => choice(...DURATIONS),
     constant: ($) => choice(...CONSTANTS),
     number: ($) => choice(...NUMBERS),
     record: ($) => choice(...RECORDS),
-    keyword: ($) => choice(...KEYWORDS),
+    keyword: ($) => token.immediate(choice(...KEYWORDS.map(insensitive))),
     operator: ($) => choice(...OPERATORS),
     punctuation: ($) => choice(...PUNCTUATIONS),
     delimiter: ($) => choice(...DELIMITERS),
@@ -285,3 +281,12 @@ module.exports = grammar({
     new_line: ($) => "\n",
   },
 });
+// https://github.com/stadelmanma/tree-sitter-fortran/blob/f73d473e3530862dee7cbb38520f28824e7804f6/grammar.js#L1628
+function insensitive (str) {
+  let reg = str
+    .split("")
+    .map(l => `[${l.toLocaleLowerCase()}${l.toLocaleUpperCase()}]`)
+    .join("")
+  let result = new RegExp(reg)
+  return token(result, {word: true})
+}
